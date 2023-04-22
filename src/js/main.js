@@ -31,6 +31,9 @@ class GreenAudioPlayer {
         this.showTooltips = opts.showTooltips || false;
         this.formatTime = opts.formatTime || GreenAudioPlayer.formatTime;
 
+        this.currentTime.textContent = this.formatTime(0);
+        this.totalTime.textContent = this.formatTime(0);
+
         const self = this;
 
         this.labels = {
@@ -125,13 +128,13 @@ class GreenAudioPlayer {
             </div>
 
             <div class="controls">
-                <span class="controls__current-time" aria-live="off" role="timer">00:00</span>
+                <span class="controls__current-time" aria-live="off" role="timer"></span>
                 <div class="controls__slider slider" data-direction="horizontal">
                     <div class="controls__progress gap-progress" aria-label="Time Slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" role="slider">
                         <div class="pin progress__pin" data-method="rewind"></div>
                     </div>
                 </div>
-                <span class="controls__total-time">00:00</span>
+                <span class="controls__total-time"></span>
             </div>
 
             <div class="volume">
