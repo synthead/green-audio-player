@@ -29,6 +29,7 @@ class GreenAudioPlayer {
         this.stopOthersOnPlay = opts.stopOthersOnPlay || false;
         this.enableKeystrokes = opts.enableKeystrokes || false;
         this.showTooltips = opts.showTooltips || false;
+        this.formatTime = opts.formatTime || GreenAudioPlayer.formatTime;
 
         const self = this;
 
@@ -216,7 +217,7 @@ class GreenAudioPlayer {
         this.player.addEventListener('volumechange', this.updateVolume.bind(self));
         this.player.volume = 0.81;
         this.player.addEventListener('loadedmetadata', () => {
-            self.totalTime.textContent = GreenAudioPlayer.formatTime(self.player.duration);
+            self.totalTime.textContent = this.formatTime(self.player.duration);
         });
         this.player.addEventListener('seeking', this.showLoadingIndicator.bind(self));
         this.player.addEventListener('seeked', this.hideLoadingIndicator.bind(self));
@@ -293,7 +294,7 @@ class GreenAudioPlayer {
         this.progress.setAttribute('aria-valuenow', percent);
         this.progress.style.width = `${percent}%`;
 
-        this.currentTime.textContent = GreenAudioPlayer.formatTime(current);
+        this.currentTime.textContent = this.formatTime(current);
     }
 
     updateVolume() {
