@@ -78,7 +78,10 @@ class GreenAudioPlayer {
 
         this.initEvents();
         this.directionAware();
-        this.overcomeIosLimitations();
+
+        if (opts.hideVolumeOnMobile !== false) {
+            this.overcomeIosLimitations();
+        }
 
         if ('autoplay' in this.player.attributes) {
             const promise = this.player.play();
